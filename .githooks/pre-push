@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "Pushing index.html to mon-oren-bucket"
+aws s3 cp /Users/i533076/IdeaProjects/s3_website/index.html s3://mon-oren-bucket
