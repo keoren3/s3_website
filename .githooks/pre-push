@@ -1,8 +1,9 @@
 #!/bin/bash
 
 current_branch=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
+was_index_changed=$(git diff --exit-code index.html)
 
-if [[ "$current_branch" = "master" ]] && [[ -n "$(git diff --exit-code index.html)" ]]; then
+if [[ "$current_branch" = "master" ]] && [[ -n "$was_index_changed" ]]; then
   echo "Pushing index.html to mon-oren-bucket"
   aws s3 cp "$PWD"/index.html s3://mon-oren-bucket
 fi
